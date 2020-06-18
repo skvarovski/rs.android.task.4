@@ -6,4 +6,4 @@ The task is to create Database of cats/dogs/auto(anything you want)
 2. After clicking "Add" button user should be redirected to "Add item screen" where he could add new item to the database
 3. On the main screen user can click "Filter" button and go the the filter screen which is implemented using "PrefereneFragment"!
 
-# On the image you can see the mockups of all screens, it's not the exaxt design, so feel free to play with themes and colors:)
+# On the image you can see the mockups of all screens, it's not the exact design, so feel free to play with themes and colors:)
