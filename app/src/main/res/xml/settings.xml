@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/background_dark"
+    android:backgroundTint="@android:color/darker_gray">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:icon="@drawable/ic_baseline_looks_one_24"
+        android:key="@string/pref_room"
+        android:summary="Use Room"
+        android:title="Connect to DB via" />
+
+    <ListPreference
+        android:key="@string/pref_sort"
+        android:icon="@drawable/ic_baseline_looks_two_24"
+        android:title="Сортировка списка"
+        android:summary="Выбрано.."
+        android:defaultValue="1"
+        android:entries="@array/sort_by_type_value"
+        android:entryValues="@array/sort_by_type_key"
+        android:dialogTitle="Выберите сортировку списка" />
+
+
+</PreferenceScreen>
