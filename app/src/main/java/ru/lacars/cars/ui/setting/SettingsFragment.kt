@@ -4,12 +4,8 @@ import android.os.Bundle
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.preference.*
-import ru.lacars.cars.App
-import ru.lacars.cars.MainActivity
 import ru.lacars.cars.R
-import ru.lacars.cars.ui.add.AddFragment
 
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -49,24 +45,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
 
 
-
-
-        /*var onSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
-            Log.d("TEST","prefs")
-               if (key == "aaaa") {
-                   val pref_sort_value  = prefs.getString(getString(R.string.pref_sort), "");
-                   Log.d("TEST","Pref = $pref_sort_value")
-                   Toast.makeText(context, "Sort is $pref_sort_value", Toast.LENGTH_SHORT).show()
-               }
-           }
-       prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener)*/
-
-
-        /*prefs.registerOnSharedPreferenceChangeListener { sharedPreferences, key ->
-            Log.d("TEST","key = $key")
-
-        }*/
-
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -75,19 +53,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val actionBar = this.requireActivity().actionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setDisplayShowHomeEnabled(true);
     }
 
     override fun onResume() {
         super.onResume()
-
-        //var pref1 = prefs.getString(getString(R.string.pref_sort), "");
-
-
-
-        //Log.d("TEST","Select = $pref1")
     }
 
     override fun onDestroy() {
@@ -95,13 +64,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     }
 
-    /*override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
-    }*/
 
     companion object {
         fun newInstance() = SettingsFragment()

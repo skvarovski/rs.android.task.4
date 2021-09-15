@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ru.lacars.cars.R
 import ru.lacars.cars.databinding.AddFragmentBinding
 import ru.lacars.cars.repository.room.Car
 
@@ -15,6 +14,12 @@ class AddFragment : Fragment() {
     private var _binding: AddFragmentBinding? = null
     private val binding: AddFragmentBinding get() = requireNotNull(_binding)
     private lateinit var viewModel: AddViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +40,16 @@ class AddFragment : Fragment() {
         with(binding) {
             addButton.setOnClickListener {
                 saveCar()
+                closeFragment()
             }
 
         }
 
+    }
+
+    private fun closeFragment()
+    {
+        parentFragmentManager.popBackStack()
     }
 
     private fun saveCar() {
@@ -47,6 +58,9 @@ class AddFragment : Fragment() {
         val year = binding.yearEditText.text.toString().toIntOrNull() ?: return
 
         viewModel.save(Car(0,name,color,year))
+
+
+
 
 
     }

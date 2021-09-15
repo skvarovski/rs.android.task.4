@@ -4,7 +4,7 @@
     android:backgroundTint="@android:color/darker_gray">
 
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:icon="@drawable/ic_baseline_looks_one_24"
         android:key="@string/pref_room"
         android:summary="Use Room"

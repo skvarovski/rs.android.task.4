@@ -19,7 +19,7 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private val carAdapter: CarsAdapter = CarsAdapter()
-    private val preferencesOrder: PreferencesOrder? = context?.let { PreferencesOrder(it) }
+    //private val preferencesOrder: PreferencesOrder? = context?.let { PreferencesOrder(it) }
 
 
     private var _binding: MainFragmentBinding? = null
@@ -61,14 +61,15 @@ class MainFragment : Fragment() {
         }
 
         viewModel.getPreferences().observe(this.viewLifecycleOwner) {
-            viewModel.updateList().observe(this.viewLifecycleOwner) { list ->
-                carAdapter.submitList(list)
+            viewModel.updateList().observe(this.viewLifecycleOwner) { cars ->
+                carAdapter.submitList(cars)
             }
         }
 
 
 
     }
+
 
 
 

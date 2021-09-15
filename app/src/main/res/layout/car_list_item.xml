@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:elevation="16dp"
+    android:elevation="8dp"
     android:layout_margin="@dimen/content_margin">
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,18 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/field_margin"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             tools:text="Caption"
             />
         <TextView
             android:id="@+id/colorTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             tools:text="Note text…"
             />
         <TextView
             android:id="@+id/yearTextView"
+            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Subtitle2"

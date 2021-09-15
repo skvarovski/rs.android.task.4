@@ -1,5 +1,6 @@
 package ru.lacars.cars.repository.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
