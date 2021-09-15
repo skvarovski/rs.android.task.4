@@ -7,10 +7,8 @@ import androidx.lifecycle.asFlow
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
 import ru.lacars.cars.R
 import ru.lacars.cars.locator.locateLazy
 import ru.lacars.cars.repository.cursor.CarSQLiteOpenHelper
@@ -30,27 +28,26 @@ class Repository(
 
     private var prefs = PreferenceManager.getDefaultSharedPreferences(context) //preferencesOrder
 
-    private var valueRoom =  prefs.getBoolean("pref_room_key", false)
+    private var valueRoom = prefs.getBoolean("pref_room_key", false)
 
 
     //fun getAll(): Flow<List<Car>> = dao.getAll()
     fun getAll(): Flow<List<Car>> {
-        Log.d("TEST","PreferenceDB Repo = $valueRoom")
+        Log.d("TEST", "PreferenceDB Repo = $valueRoom")
 
         return when (valueRoom) {
             true -> dao.getAll()
             else -> {
-                return flow {
-                    val list = carSQLiteOpenHelper.getListOfTopics()
-                    emit(list)
+                runBlocking {
+                    flow {
+                        val list = carSQLiteOpenHelper.getListOfTopics()
+                        emit(list)
+                    }
                 }
-
             }
         }
 
     }
-
-
 
 
     //suspend fun save(note: Car) = dao.add(note)
@@ -76,14 +73,11 @@ class Repository(
     }*/
 
 
-
     /*private suspend fun saveRoom(car: Car) = dao.add(car)
     private suspend fun saveCursor(car: Car) {
 
         carSQLiteOpenHelper.saveCarCursor(car)
     }*/
-
-
 
 
 }

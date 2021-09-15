@@ -2,11 +2,13 @@ package ru.lacars.cars.ui.main
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.flow.observeOn
 import ru.lacars.cars.R
 import ru.lacars.cars.adapter.CarsAdapter
@@ -56,13 +58,15 @@ class MainFragment : Fragment() {
 
 
 
-        viewModel.updateList().observe(this.viewLifecycleOwner) { cars ->
+        viewModel.updateList().asLiveData().observe(this.viewLifecycleOwner) { cars ->
             carAdapter.submitList(cars)
+            Log.d("TEST","List update by Observe")
         }
 
         viewModel.getPreferences().observe(this.viewLifecycleOwner) {
-            viewModel.updateList().observe(this.viewLifecycleOwner) { cars ->
+            viewModel.updateList().asLiveData().observe(this.viewLifecycleOwner) { cars ->
                 carAdapter.submitList(cars)
+                Log.d("TEST","List update by observe preference")
             }
         }
 

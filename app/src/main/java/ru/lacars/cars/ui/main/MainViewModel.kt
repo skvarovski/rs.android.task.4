@@ -2,10 +2,7 @@ package ru.lacars.cars.ui.main
 
 import android.util.Log
 import androidx.lifecycle.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.lacars.cars.locator.locateLazy
 import ru.lacars.cars.repository.PreferencesDB
@@ -24,7 +21,7 @@ class MainViewModel(
 
 
     //val cars = repository.getAll().asLiveDataFlow()
-    private val _cars = repository.getAll().asLiveData()
+    private val _cars = repository.getAll()
 
     fun updateList() =  _cars.map { cars ->
         when (getPreferences().value)  {
@@ -46,7 +43,7 @@ class MainViewModel(
             }
             else -> cars
         }
-    }
+    }.asLiveDataFlow()
 
     fun getPreferences() = preferencesOrder
     fun getPreferencesBaseRoom() = preferencesDB
