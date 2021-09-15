@@ -9,6 +9,7 @@ import ru.lacars.cars.repository.PreferencesDB
 import ru.lacars.cars.repository.PreferencesOrder
 import ru.lacars.cars.repository.Repository
 import ru.lacars.cars.repository.room.Car
+import java.util.*
 
 
 class MainViewModel(
@@ -31,11 +32,11 @@ class MainViewModel(
              }
             "name" -> {
                 Log.d("TEST","Sort by name")
-                cars.sortedBy { it.name }
+                cars.sortedBy { it.name.lowercase(Locale.getDefault()) }
             }
             "color" -> {
                 Log.d("TEST","Sort by color")
-                cars.sortedBy { it.color }
+                cars.sortedBy { it.color.lowercase(Locale.getDefault()) }
             }
             "year" -> {
                 Log.d("TEST","Sort by year")
