@@ -30,7 +30,7 @@ private const val CREATE_TABLE_SQL =
             "$COLUMN_NAME TEXT NOT NULL, " +
             "$COLUMN_COLOR TEXT NOT NULL," +
             "$COLUMN_YEAR INTEGER NOT NULL," +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL" +
             ");"
 
 private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
