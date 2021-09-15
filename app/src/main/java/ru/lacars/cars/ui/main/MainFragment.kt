@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.flow.observeOn
 import ru.lacars.cars.R
 import ru.lacars.cars.adapter.CarsAdapter
 import ru.lacars.cars.adapter.SwipeHelper
 import ru.lacars.cars.databinding.MainFragmentBinding
-import ru.lacars.cars.repository.PreferencesOrder
 import ru.lacars.cars.ui.add.AddFragment
 
 class MainFragment : Fragment() {
@@ -22,7 +20,6 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModels()
     private val carAdapter: CarsAdapter = CarsAdapter()
     //private val preferencesOrder: PreferencesOrder? = context?.let { PreferencesOrder(it) }
-
 
     private var _binding: MainFragmentBinding? = null
     private val binding: MainFragmentBinding get() = requireNotNull(_binding)
@@ -78,8 +75,6 @@ class MainFragment : Fragment() {
     }
 
 
-
-
     private fun openAddFragment() {
         parentFragmentManager.beginTransaction()
             .addToBackStack(null)
@@ -94,6 +89,10 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }
 

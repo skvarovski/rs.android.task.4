@@ -1,6 +1,5 @@
 package ru.lacars.cars.repository
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import kotlinx.coroutines.flow.Flow
@@ -29,10 +28,4 @@ class RepositoryRoom(
 
     override suspend fun delete(car: Car) = dao.delete(car)
 
-
-/*private suspend fun saveRoom(car: Car) = dao.add(car)
-private suspend fun saveCursor(car: Car) {
-
-    carSQLiteOpenHelper.saveCarCursor(car)
-}*/
 }

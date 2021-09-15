@@ -1,6 +1,5 @@
 package ru.lacars.cars.ui.main
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
@@ -8,7 +7,6 @@ import androidx.lifecycle.*
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import ru.lacars.cars.R
 import ru.lacars.cars.locator.locateLazy
 import ru.lacars.cars.repository.*
 import ru.lacars.cars.repository.room.Car
@@ -16,9 +14,7 @@ import ru.lacars.cars.repository.room.IRepository
 import java.util.*
 
 
-class MainViewModel(
-    //private val preferencesOrder: PreferencesOrder
-) : ViewModel() {
+class MainViewModel() : ViewModel() {
 
     //private val repository: Repository by locateLazy()
     private val preferencesOrder: PreferencesOrder by locateLazy()
@@ -30,7 +26,7 @@ class MainViewModel(
     private val repositoryCursor: RepositoryCursor = RepositoryCursor()
     lateinit var repository: IRepository
 
-    //если динамически переключать то вылетает, но если заюзать через перезагрузку приложения, то ОК
+    //динамически не меняется, но если заюзать через перезагрузку приложения, то ОК
     val useRoom: Boolean by lazy {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         prefs.getBoolean("pref_room_key", false)
@@ -53,15 +49,9 @@ class MainViewModel(
         }
     }*/
 
-
-
-
-    //val cars = repository.getAll().asLiveDataFlow()
     private val _cars = repository.getAll()
 
     fun updateList(): Flow<List<Car>> {
-
-
         return _cars.map { cars ->
             when (getPreferences().value)  {
                 "id" -> {
@@ -86,23 +76,10 @@ class MainViewModel(
     }
 
     fun getPreferences() = preferencesOrder
-    //fun getPreferencesBaseRoom() = preferencesDB
-
-    /*val newCaption = flow<String> {
-        while (true) {
-            emit(createCaption())
-            delay(500L)
-        }
-    }*/
-
-    /*fun save(note: String) {
-        viewModelScope.launch { repository.save(createNote(note)) }
-    }*/
 
     fun delete(car: Car) {
         viewModelScope.launch {
             repository.delete(car)
-
         }
         repository.getAll()
     }
@@ -114,14 +91,6 @@ class MainViewModel(
         }
 
     }
-
-    /*private fun createNote(noteText: String) = Car(
-        name = createCaption(),
-        color = noteText
-    )*/
-
-    /*private fun createCaption(): String =
-        DateFormat.format("hh:mm:ss, MMM dd, yyyy", Date()).toString()*/
 
     private fun <T> Flow<T>.asLiveDataFlow() =
         shareIn(viewModelScope, SharingStarted.Eagerly, replay = 1)
