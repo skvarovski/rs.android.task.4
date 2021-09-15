@@ -15,20 +15,21 @@ import ru.lacars.cars.repository.room.Car
 import java.util.*
 
 class AddViewModel : ViewModel() {
-    private val repository: Repository by locateLazy()
+    //private val repository: Repository by locateLazy()
 
-    public fun save(car: Car) {
+    /*public fun save(car: Car) {
         viewModelScope.launch {
             repository.save(car)
         }
 
-    }
+    }*/
 
 
 
-    private fun <T> Flow<T>.asLiveDataFlow() =
+
+    /*private fun <T> Flow<T>.asLiveDataFlow() =
         shareIn(viewModelScope, SharingStarted.Eagerly, replay = 1)
-
+*/
 
 
 

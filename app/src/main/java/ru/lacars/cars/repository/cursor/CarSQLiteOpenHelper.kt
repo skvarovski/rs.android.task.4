@@ -26,10 +26,12 @@ private const val DATABASE_VERSION = 1
 
 private const val CREATE_TABLE_SQL =
     "CREATE TABLE IF NOT EXISTS $TABLE_NAME " +
-            "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "(" +
             "$COLUMN_NAME TEXT NOT NULL, " +
             "$COLUMN_COLOR TEXT NOT NULL," +
-            "$COLUMN_YEAR INTEGER NOT NULL);"
+            "$COLUMN_YEAR INTEGER NOT NULL," +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT" +
+            ");"
 
 private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
 
@@ -40,6 +42,7 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
     null,
     DATABASE_VERSION
 ) {
+    var carLiveData: LiveData<List<Car>> = MutableLiveData<List<Car>>()
 
     override fun onCreate(db: SQLiteDatabase) {
         try {
@@ -69,7 +72,7 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
         onCreate(db)
     }
 
-    fun saveCarCursor(car: Car): Long? {
+    suspend fun saveCarCursor(car: Car) {
         val db = this.writableDatabase
         // Create a new map of values, where column names are the keys
         val values = ContentValues().apply {
@@ -77,15 +80,27 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
             put(COLUMN_COLOR, car.color)
             put(COLUMN_YEAR, car.year)
         }
+        getListOfTopics()
+        Log.d("TEST","SAVE item SQL")
 
         // Insert the new row, returning the primary key value of the new row
-        return db?.insert(TABLE_NAME, null, values)
+        db?.insert(TABLE_NAME, null, values)
 
+    }
+
+    suspend fun deleteCarCursor(car: Car) {
+
+        val whereId : Array<String> = arrayOf(car.id.toString())
+
+        getListOfTopics()
+        this.writableDatabase.delete(TABLE_NAME,"$COLUMN_ID = ?",whereId)
+
+        Log.d("TEST","Delete Item SQL")
 
     }
 
     private fun getCursorWithTopics(): Cursor {
-        return readableDatabase.rawQuery("SELECT * FROM $TABLE_NAME", null)
+        return readableDatabase.rawQuery("SELECT id,name,color,year FROM $TABLE_NAME", null)
     }
 
 

@@ -22,7 +22,7 @@ class Repository(
     private val preferencesOrder: PreferencesOrder by locateLazy()
     private val context: Context by locateLazy()
     private val carSQLiteOpenHelper: CarSQLiteOpenHelper by locateLazy()
-    private val dao get() = db.notesDao
+    private val dao get() = db.carsDao
     //private val _flowCursor = MutableLiveData<List<Car>>()
     //val flowCursor: LiveData<List<Car>> = _flowCursor
 

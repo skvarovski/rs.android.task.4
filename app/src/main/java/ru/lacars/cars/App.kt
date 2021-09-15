@@ -19,11 +19,13 @@ class App: Application() {
 
         ServiceLocator.register<Context>(this)
 
-        ServiceLocator.register<CarsDatabase>(CarsDatabaseImpl.create(locate()))
-        ServiceLocator.register(PreferencesDB(locate()))
+        //ServiceLocator.register(Application(locate()))
+
+        //ServiceLocator.register<CarsDatabase>(CarsDatabaseImpl.create(locate()))
+        //ServiceLocator.register(PreferencesDB(locate()))
         ServiceLocator.register(PreferencesOrder(locate()))
         ServiceLocator.register(CarSQLiteOpenHelper(locate()))
-        ServiceLocator.register(Repository(locate()))
+        //ServiceLocator.register(Repository(locate()))
 
 
     }

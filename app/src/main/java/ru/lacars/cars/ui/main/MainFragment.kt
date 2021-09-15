@@ -33,12 +33,14 @@ class MainFragment : Fragment() {
         actionBar?.setDisplayHomeAsUpEnabled(false)
         actionBar?.setDisplayShowHomeEnabled(false)
 
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View  {
+
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,13 +62,14 @@ class MainFragment : Fragment() {
 
         viewModel.updateList().asLiveData().observe(this.viewLifecycleOwner) { cars ->
             carAdapter.submitList(cars)
-            Log.d("TEST","List update by Observe")
+                //Log.d("TEST","isRoom = ${viewModel.useRoom}")
         }
 
+        //в случае переключения сортировки
         viewModel.getPreferences().observe(this.viewLifecycleOwner) {
             viewModel.updateList().asLiveData().observe(this.viewLifecycleOwner) { cars ->
                 carAdapter.submitList(cars)
-                Log.d("TEST","List update by observe preference")
+                Log.d("TEST","List update by SORT preference")
             }
         }
 
