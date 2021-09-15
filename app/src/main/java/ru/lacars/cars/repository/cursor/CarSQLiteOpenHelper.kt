@@ -92,8 +92,6 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
 
 
     fun getListOfTopics(): List<Car> {
-        //val listOfTopics = mutableListOf<String>()
-        //val liveData = MutableLiveData<List<Car>>()
         val listOfCars = mutableListOf<Car>()
         getCursorWithTopics().use { cursor ->
             try {

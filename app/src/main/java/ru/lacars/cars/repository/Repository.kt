@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asFlow
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
@@ -42,7 +43,7 @@ class Repository(
                 return flow {
                     val list = carSQLiteOpenHelper.getListOfTopics()
                     emit(list)
-                }.flowOn(Dispatchers.IO)
+                }
 
             }
         }
