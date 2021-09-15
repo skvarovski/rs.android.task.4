@@ -32,7 +32,7 @@ class Repository(
 
 
     //fun getAll(): Flow<List<Car>> = dao.getAll()
-    fun getAll(): Flow<List<Car>> {
+    /*fun getAll(): Flow<List<Car>> {
         Log.d("TEST", "PreferenceDB Repo = $valueRoom")
 
         return when (valueRoom) {
@@ -47,7 +47,7 @@ class Repository(
             }
         }
 
-    }
+    }*/
 
 
     //suspend fun save(note: Car) = dao.add(note)

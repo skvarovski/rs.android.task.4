@@ -60,7 +60,7 @@ class AddFragment : Fragment() {
         val color = binding.colorEditText.text.toString().takeIf { it.isNotBlank() } ?: return
         val year = binding.yearEditText.text.toString().toIntOrNull() ?: return
         //уносим всю логику в главный viewModel
-        mainViewModel.save(Car(0,name,color,year))
+        mainViewModel.save(Car(name,color,year,0))
 
 
     }

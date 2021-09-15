@@ -72,7 +72,7 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
         onCreate(db)
     }
 
-    suspend fun saveCarCursor(car: Car) {
+    fun saveCarCursor(car: Car) {
         val db = this.writableDatabase
         // Create a new map of values, where column names are the keys
         val values = ContentValues().apply {
@@ -80,23 +80,23 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
             put(COLUMN_COLOR, car.color)
             put(COLUMN_YEAR, car.year)
         }
-        getListOfTopics()
+
         Log.d("TEST","SAVE item SQL")
 
         // Insert the new row, returning the primary key value of the new row
         db?.insert(TABLE_NAME, null, values)
-
+        getListOfTopics()
     }
 
-    suspend fun deleteCarCursor(car: Car) {
+    fun deleteCarCursor(car: Car) {
 
         val whereId : Array<String> = arrayOf(car.id.toString())
 
-        getListOfTopics()
+
         this.writableDatabase.delete(TABLE_NAME,"$COLUMN_ID = ?",whereId)
 
         Log.d("TEST","Delete Item SQL")
-
+        getListOfTopics()
     }
 
     private fun getCursorWithTopics(): Cursor {
@@ -106,7 +106,7 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
 
 
 
-    fun getListOfTopics(): List<Car> {
+    fun getListOfTopics(): LiveData<List<Car>> {
         val listOfCars = mutableListOf<Car>()
         getCursorWithTopics().use { cursor ->
             try {
@@ -116,10 +116,10 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
                         val name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
                         val color = cursor.getString(cursor.getColumnIndex(COLUMN_COLOR))
                         val year = cursor.getInt(cursor.getColumnIndex(COLUMN_YEAR))
-                        listOfCars.add(Car(id,name,color,year))
+                        listOfCars.add(Car(name,color,year,id))
                     } while (cursor.moveToNext())
                 } else {
-                    listOfCars
+                    (carLiveData as MutableLiveData).value = listOfCars
 
                 }
 
@@ -130,7 +130,8 @@ class CarSQLiteOpenHelper(context: Context) : SQLiteOpenHelper(
                 cursor.close()
             }
         }
+        (carLiveData as MutableLiveData).value = listOfCars
 
-        return listOfCars
+        return carLiveData
     }
 }

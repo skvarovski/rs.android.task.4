@@ -1,5 +1,6 @@
 package ru.lacars.cars.repository
 
+import androidx.lifecycle.asFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
@@ -15,13 +16,15 @@ class RepositoryCursor(
     private val carSQLiteOpenHelper: CarSQLiteOpenHelper by locateLazy()
 
 
-    override fun getAll(): Flow<List<Car>> =
+    override fun getAll(): Flow<List<Car>> = carSQLiteOpenHelper.getListOfTopics().asFlow()
+    
+    /*=
                 runBlocking {
                     flow {
                         val list = carSQLiteOpenHelper.getListOfTopics()
                         emit(list)
                     }
-                }
+                }*/
 
 
     override suspend fun save(car: Car) = carSQLiteOpenHelper.saveCarCursor(car)

@@ -8,4 +8,9 @@ The task is to create Database of cats/dogs/auto(anything you want)
 4. You should also add Update and Delete functionality!
 5. The app should provide two implementations(first for Cursors and second for Room), and should be able to change implementation in runtime(by button click, settings, etc.)
 
-# On the image you can see the mockups of all screens, it's not the exact design, so feel free to play with design and items :)
+# When change DB have a crash
+#  Expected:
+#  TableInfo{name='cars', columns={name=Column{name='name', type='TEXT', affinity='2', notNull=true, primaryKeyPosition=0, defaultValue='null'}, id=Column{name='id', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=1, defaultValue='null'}, color=Column{name='color', type='TEXT', affinity='2', notNull=true, primaryKeyPosition=0, defaultValue='null'}, year=Column{name='year', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='null'}}, foreignKeys=[], indices=[]}
+#  Found:
+#  TableInfo{name='cars', columns={color=Column{name='color', type='TEXT', affinity='2', notNull=true, primaryKeyPosition=0, defaultValue='null'}, year=Column{name='year', type='INTEGER', affinity='3', notNull=true, primaryKeyPosition=0, defaultValue='null'}, name=Column{name='name', type='TEXT', affinity='2', notNull=true, primaryKeyPosition=0, defaultValue='null'}, id=Column{name='id', type='INTEGER', affinity='3', notNull=false, primaryKeyPosition=1, defaultValue='null'}}, foreignKeys=[], indices=[]}
+

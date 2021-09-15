@@ -2,20 +2,25 @@ package ru.lacars.cars.repository.room
 
 import androidx.annotation.Keep
 import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
-@Keep
+
 @Entity(tableName = "cars")
 data class Car(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    @NonNull
+    @NotNull
+    @ColumnInfo(name = "name")
     val name: String,
-    @NonNull
+    @NotNull
+    @ColumnInfo(name = "color")
     val color: String,
     @NonNull
-    val year: Int
+    @ColumnInfo(name = "year")
+    val year: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
 )
 
 

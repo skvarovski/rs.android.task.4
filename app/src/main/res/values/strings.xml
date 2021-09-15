@@ -6,4 +6,8 @@
     <string name="toolbar_button_filter">Filter</string>
     <string name="pref_sort">pref_sort_by_type</string>
     <string name="pref_room">pref_room_key</string>
+    <string name="add_edit_text">Название автомобиля</string>
+    <string name="add_color_text">Цвет автомобиля</string>
+    <string name="add_year_text">Год выпуска</string>
+    <string name="add_button_text">Добавить</string>
 </resources>
