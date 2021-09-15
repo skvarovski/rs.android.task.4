@@ -18,7 +18,7 @@ class MainViewModel(
 
     private val repository: Repository by locateLazy()
     private val preferencesOrder: PreferencesOrder by locateLazy()
-    private val preferencesDB: PreferencesDB by locateLazy()
+    //private val preferencesDB: PreferencesDB by locateLazy()
 
 
     //val cars = repository.getAll().asLiveDataFlow()
@@ -47,7 +47,7 @@ class MainViewModel(
     }.asLiveDataFlow()
 
     fun getPreferences() = preferencesOrder
-    fun getPreferencesBaseRoom() = preferencesDB
+    //fun getPreferencesBaseRoom() = preferencesDB
 
     /*val newCaption = flow<String> {
         while (true) {
